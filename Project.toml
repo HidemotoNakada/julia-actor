@@ -1,0 +1,6 @@
+name = "MyActor2"
+uuid = "a6a5b9f8-8b71-4ca7-b06c-ab392f499c88"
+version = "0.1.0"
+authors = ["Hidemoto Nakada <someone@email.com>"]
+
+[deps]
