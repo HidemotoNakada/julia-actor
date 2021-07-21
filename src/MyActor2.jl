@@ -1,5 +1,5 @@
 module MyActor2
-export Actor, Message, Context, start, ActorRef, callOn, @startat, stop, _Rep
+export Actor, Message, Context, start, ActorRef, callOn, @startat, stop, _Rep, mergeFuture
 import Distributed
 
 abstract type Actor end
