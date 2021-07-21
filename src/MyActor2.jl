@@ -61,11 +61,26 @@ function callOn(ref::ActorRef, mes::Message)
     RRID = Distributed.remoteref_id(rr)
     put!(ref.cn, (mes, RRID))
     return rr
-end    
+end
 
 function stop(ref::ActorRef)
     callOn(ref, _Stop())
     close(ref.cn)
+end
+
+function mergeFuture(futures)
+    cn = Channel()
+    counter = length(futures)
+    for (i, f) in enumerate(futures)
+        @async begin
+            put!(cn, fetch(f)); 
+            counter-=1; 
+            if counter == 0 
+                close(cn) 
+            end
+        end
+    end
+    cn
 end
 
 end ## module
